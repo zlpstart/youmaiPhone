@@ -265,9 +265,9 @@ export default {
             } else {
               alert("系统异常");
             }
-          })
-        }else {
-          alert("手机号或邮箱有误")
+          });
+        } else {
+          alert("手机号或邮箱有误");
         }
       } else {
         alert("您的信息并未完善");
@@ -284,12 +284,17 @@ export default {
         document.body.scrollTop;
       var scroll = scrollTop - this.i;
       this.i = scrollTop;
-      if (scroll < 0) {
+      if (!this.close) {
+        if (scroll < 0) {
+          this.navTop = false;
+          this.showTop = false;
+        } else {
+          this.showTop = true;
+          this.navTop = true;
+        }
+      } else {
         this.navTop = false;
         this.showTop = false;
-      } else {
-        this.showTop = true;
-        this.navTop = true;
       }
     },
     goTop() {
@@ -299,8 +304,16 @@ export default {
       this.$router.push("/news");
     },
     getNewss() {
-      getNews().then(res => {
-        this.news = res.data.data.recommend;
+      $.ajax({
+        type: "get",
+        dataType: "json", //
+        url: "http://web.iyoumai.net/?m=Index&a=NEWS",
+        success: function(data) {
+          console.log("这是请求成功的");
+        },
+        error: function(err) {
+          console.log("这是请求失败的");
+        }
       });
     },
     phone(e) {
@@ -513,10 +526,12 @@ export default {
   flex-shrink: 0;
 }
 .home_garden_list:nth-child(1) {
-  background: url("../../assets/img_kechuangc.png");
+  background: url("../../assets/img_kechuangc.png") no-repeat center;
+  background-size: 100% auto;
 }
 .home_garden_list:nth-child(2) {
-  background: url("../../assets/img_xinyi.png");
+  background: url("../../assets/img_xinyi.png") no-repeat center;
+  background-size: 100% auto;
 }
 .home_garden_list:nth-child(1) {
   margin-left: 0;

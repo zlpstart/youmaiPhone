@@ -39,7 +39,7 @@ import swiper from "../../components/Swiper/index";
 import navB from "../../components/Nav/index";
 import bottomB from "../../components/Bottom/index";
 import "../../styles/view/WorkIntroduce/index.css";
-import {RecruitDuty} from '../../api/WorkIntroduce/index'
+import { RecruitDuty } from "../../api/WorkIntroduce/index";
 
 export default {
   name: "WorkIntroduce",
@@ -47,22 +47,22 @@ export default {
     return {
       close: false,
       navTop: false,
-      showDatas:null,
-      duty:[],
-      requirement:[]
+      showDatas: null,
+      duty: [],
+      requirement: []
     };
   },
   mounted() {
     // 监听（绑定）滚轮 滚动事件
     window.addEventListener("scroll", this.handleScroll, true);
     const para = {
-      id:this.$route.params.e
-    }
-    let a = JSON.stringify(para)
+      id: this.$route.params.e
+    };
+    let a = JSON.stringify(para);
     RecruitDuty(a).then(res => {
-      this.duty = res.data.data.duty
-      this.requirement = res.data.data.requirement
-    })
+      this.duty = res.data.data.duty;
+      this.requirement = res.data.data.requirement;
+    });
     // this.showData()
   },
   components: {
@@ -72,8 +72,7 @@ export default {
     navB
   },
   methods: {
-    getListId(){
-    },
+    getListId() {},
     closeThis(e) {
       this.close = e;
     },
@@ -88,12 +87,17 @@ export default {
         document.body.scrollTop;
       var scroll = scrollTop - this.i;
       this.i = scrollTop;
-      if (scroll < 0) {
+      if (!this.close) {
+        if (scroll < 0) {
+          this.navTop = false;
+          this.showTop = false;
+        } else {
+          this.showTop = true;
+          this.navTop = true;
+        }
+      } else {
         this.navTop = false;
         this.showTop = false;
-      } else {
-        this.showTop = true;
-        this.navTop = true;
       }
     }
   }
@@ -162,8 +166,8 @@ export default {
   height: 100%;
 }
 .topNav_right {
-width: 36px;
-height: 28px;
+  width: 36px;
+  height: 28px;
 }
 .topNav_right img {
   margin-top: 5px;

@@ -123,12 +123,17 @@ export default {
         document.body.scrollTop;
       var scroll = scrollTop - this.i;
       this.i = scrollTop;
-      if (scroll < 0) {
+      if (!this.close) {
+        if (scroll < 0) {
+          this.navTop = false;
+          this.showTop = false;
+        } else {
+          this.showTop = true;
+          this.navTop = true;
+        }
+      } else {
         this.navTop = false;
         this.showTop = false;
-      } else {
-        this.showTop = true;
-        this.navTop = true;
       }
     }
   }
@@ -200,6 +205,8 @@ export default {
 }
 .market_content_content_img_center img {
   margin-left: -30px;
+  width: 100%;
+  height: 100%;
 }
 .market_content_content_img_right .market_content_content_img_right_box {
   position: absolute;
