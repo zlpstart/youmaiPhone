@@ -60,6 +60,7 @@ export default {
     };
     let a = JSON.stringify(para);
     RecruitDuty(a).then(res => {
+        console.log(res.data)
       this.duty = res.data.data.duty;
       this.requirement = res.data.data.requirement;
     });

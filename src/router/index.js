@@ -3,13 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-  const routes = [
-    {
-      path: '/',
-      redirect:'/w'
-    },
+const routes = [
   {
-    path: '/w',
+    path: '/',
     name: 'Home',
     component: () => import('../views/Home/index.vue')
   },
@@ -69,7 +65,7 @@ Vue.use(VueRouter)
     component: () => import('../views/News/index.vue')
   },
   {
-    path: '/err',
+    path: '*',
     name: 'err',
     component: () => import('../views/404/index.vue')
   },

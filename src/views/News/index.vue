@@ -10,10 +10,13 @@
             <p>{{recommend.create_time}}</p>
           </div>
           <div class="box_img_img_img">
-            <img :src="recommend.new_img" alt />
+            <img :src="recommend.pc_img_small" alt />
           </div>
           <div class="news_content_txt">
-            <p>{{recommend.content}}</p>
+            <p
+              v-for="item in recommend.content"
+              :key="item"
+            >{{item}}</p>
           </div>
         </div>
       </div>
@@ -29,7 +32,7 @@
           <p>{{item.create_time}}</p>
         </div>
         <div class="news_other_list_img">
-          <img :src="item.new_img" alt />
+          <img :src="item.phone_img_big" alt />
         </div>
       </div>
     </div>
@@ -72,6 +75,7 @@ export default {
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true),
     getNews().then(res => {
+        console.log(res.data)
       this.recommend = res.data.data.recommend
       this.Norecommend = res.data.data.Norecommend
     })
@@ -109,11 +113,13 @@ export default {
       }
     },
     changeNews(e){
+      console.log(e)
       const para = {
         id:e
       }
       let a = JSON.stringify(para)
       getNewsContent(a).then(res => {
+        console.log(res.data)
         this.recommend = res.data.data
       })
     }

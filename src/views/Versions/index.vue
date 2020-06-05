@@ -37,7 +37,7 @@
         <div class="versions_phone_list_box">
           <div class="versions_phone_list_box_img">
             <div class="versions_phone_list_box_img_img">
-              <img src="../../assets/icon_email.png" alt />
+              <img src="../../assets/icon_email (2).png" alt />
             </div>
           </div>
           <div class="versions_phone_list_box_txt">
@@ -48,7 +48,7 @@
         <div class="versions_phone_list_box">
           <div class="versions_phone_list_box_img">
             <div class="versions_phone_list_box_img_img">
-              <img src="../../assets/icon_phone.png" alt />
+              <img src="../../assets/icon_phone (2).png" alt />
             </div>
           </div>
           <div class="versions_phone_list_box_txt">
@@ -201,10 +201,10 @@ export default {
   height: 90px;
 }
 .versions_phone_list_box_img_img {
-  width: 112px;
-  height: 112px;
+  width: 90px;
+  height: 90px;
   margin: auto;
-  margin-top: 25px;
+  margin-top: 35px;
   border: linear-gradient(to right, #ccc 0%, #ccc 50%, transparent 50%);
 }
 .versions_phone_list_box_img_img img {

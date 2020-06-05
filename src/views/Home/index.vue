@@ -77,11 +77,11 @@
       </div>
       <div class="segmentation"></div>
       <div class="home_news_img">
-        <img :src="news.new_img" alt />
+        <img :src="news.pc_img_small" alt />
       </div>
       <div class="home_news_txt">
         <h1>{{news.title}}</h1>
-        <p>{{news.content}}</p>
+        <p v-for="item in news.content" :key="item">{{item}}</p>
       </div>
     </div>
     <div class="home_garden home_wrap">
@@ -203,7 +203,8 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll, true), this.getNewss();
+    window.addEventListener("scroll", this.handleScroll, true), 
+    this.getNewss();
   },
   computed: {
     getphone() {
@@ -304,16 +305,8 @@ export default {
       this.$router.push("/news");
     },
     getNewss() {
-      $.ajax({
-        type: "get",
-        dataType: "json", //
-        url: "http://web.iyoumai.net/?m=Index&a=NEWS",
-        success: function(data) {
-          console.log("这是请求成功的");
-        },
-        error: function(err) {
-          console.log("这是请求失败的");
-        }
+      getNews().then(res => {
+        this.news = res.data.data.recommend;
       });
     },
     phone(e) {
